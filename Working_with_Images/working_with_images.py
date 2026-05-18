@@ -1,40 +1,49 @@
-import os, sys
-from PIL import Image
+import os
+from tqdm import tqdm
+import subprocess
+from PIL import Image, ImageOps
 
 
-src_path = "images_old"
-dst_path = "images_new"
+src_path = "images"
+dst_path = "new_images"
 
-os.makedirs(dst_path, exist_ok=True)
+id = 1
+isSuccessful = False
 
-for image in os.listdir(src_path):
-    f, e = os.path.splitext(image)
-    newImage = f + ".png"
+THUMBNAIL_AMT = (75, 75)
+CROP_AMT = (20, 0, 220, 200)
+ROTATION_DEG = -90
+
+try:
+    original_images = sorted(os.listdir(src_path))
+    for image in tqdm(original_images, desc="Finding and processing images"):       
+
+        if not image.lower().endswith((".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tiff")):
+            continue
+
+        os.makedirs(dst_path, exist_ok=True)
+        
+        f, e = os.path.splitext(image)
+        f = f"pic{str(id).zfill(4)}"
+        id += 1
+        newImage = f + ".png"
+        
+        src_file = os.path.join(src_path, image)
+        dst_file = os.path.join(dst_path, newImage)
+        
+        try:
+            with Image.open(src_file) as im:
+                im = im.crop(CROP_AMT)
+                im = im.rotate(ROTATION_DEG)
+                im.thumbnail(THUMBNAIL_AMT)
+                im = ImageOps.grayscale(im)
+                im.save(dst_file)
+                isSuccessful = True
+        except OSError:
+            print("Cannot convert", image)
+    print("Finished")
     
-    src_file = os.path.join(src_path, image)
-    dst_file = os.path.join(dst_path, newImage)
-    
-    try:
-        with Image.open(src_file) as im:
-            im.save(dst_file)
-    except OSError:
-        print("Cannot convert", image)
-
-
-    
-#******************************   TASKS   ******************************#
-# In one pass (a single loop over the files), do all of the following to each image:
-
-#✅     Convert from jpg to png format
-
-#     Crop the edges to be a square (height and width should match)
-
-#     Rotate so the faces of the people are oriented correctly, there should be no black edges showing
-
-#     Make the new thumbnails size 75x75 pixels
-
-#     Convert to gray scales
-
-#     Save the results in a directory called 'new_images' at the same directory level as 'images'
-
-#     Rename the files to be sequentially numbered with a prefix of 'pic' and always having four digits (e.g. pic0001.png, pic0002.png, ... pic0010.png, ... pic0284.png)
+    print("Opening folder location...")
+    subprocess.Popen(f'explorer /select, "{os.getcwd()}\\{dst_path}\\"')
+except OSError:
+    print("Edits were not successful")

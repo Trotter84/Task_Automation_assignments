@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers>
+    <customer>
+        <first_name>Maria</first_name>
+        <last_name>Garcia</last_name>
+        <email>maria.garcia@email.com</email>
+        <order_number>10482</order_number>
+        <item>Wireless Keyboard</item>
+        <order_total>34.99</order_total>
+        <delivery_date>June 3</delivery_date>
+    </customer>
+    <customer>
+        <first_name>James</first_name>
+        <last_name>Lee</last_name>
+        <email>james.lee@email.com</email>
+        <order_number>10483</order_number>
+        <item>USB-C Hub</item>
+        <order_total>22.50</order_total>
+        <delivery_date>June 3</delivery_date>
+    </customer>
+    <customer>
+        <first_name>Priya</first_name>
+        <last_name>Patel</last_name>
+        <email>priya.patel@email.com</email>
+        <order_number>10484</order_number>
+        <item>Monitor Stand</item>
+        <order_total>47.00</order_total>
+        <delivery_date>June 5</delivery_date>
+    </customer>
+    <customer>
+        <first_name>Tom</first_name>
+        <last_name>Nguyen</last_name>
+        <email>tom.nguyen@email.com</email>
+        <order_number>10485</order_number>
+        <item>Webcam</item>
+        <order_total>61.20</order_total>
+        <delivery_date>June 5</delivery_date>
+    </customer>
+    <customer>
+        <first_name>Sandra</first_name>
+        <last_name>Kim</last_name>
+        <email>sandra.kim@email.com</email>
+        <order_number>10486</order_number>
+        <item>Laptop Sleeve</item>
+        <order_total>19.99</order_total>
+        <delivery_date>June 6</delivery_date>
+    </customer>
+</customers>
