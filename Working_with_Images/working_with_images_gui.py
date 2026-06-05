@@ -42,7 +42,7 @@ def edit_image():
 
             src_file = os.path.join(src_path, image)
             dst_file = os.path.join(dst_path, newImage)
-            
+
             try:
                 with Image.open(src_file) as im:
                     im = im.crop(CROP_AMT)
@@ -108,7 +108,7 @@ folderLbl.grid(row=3, column=0, rowspan=1, columnspan=2)
 folderEntry = tk.Entry(root)
 folderEntry.grid(row=3, column=2, rowspan=1, columnspan=2)
 
-convertBtn = tk.Button(root, text="Convert Images", command=edit_image)
+convertBtn = tk.Button(root, text="Process Images", command=edit_image)
 convertBtn.grid(row=4, column=0, rowspan=1, columnspan=4)
 
 # ^^^^^^^^^^^^^^^^^^^^^^^^^ Layout Section ^^^^^^^^^^^^^^^^^^^^^^^^^ 
